@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.1
+- Updating login process to include oem field based on hyponcloud changes
+- 
 ## 1.1.0
 - Adding User Agent String
 - 

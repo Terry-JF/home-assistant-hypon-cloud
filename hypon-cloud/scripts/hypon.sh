@@ -22,7 +22,7 @@ loginHypon () {
 
     username=$(bashio::config 'username')
     password=$(bashio::config 'password')
-    loginData=$(echo "$LOGIN_TEMPLATE" | jq .username="\"$username\"" | jq .password="\"$password\"")
+    loginData=$(echo "$LOGIN_TEMPLATE" | jq .username="\"$username\"" | jq .password="\"$password\"" | jq .oem=null)
 
     bashio::log.info "Login Start"
 
