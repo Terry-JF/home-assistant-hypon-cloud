@@ -32,6 +32,8 @@ loginHypon () {
       -H 'User-Agent: Mozilla/5.0' \
       --data-raw "$loginData")
 
+      bashio::log.info "Full Login Response: ${loginResponse}"  # Dump raw JSON for debugging
+
       bashio::log.info "Login End"
       echo $loginResponse | jq -r '.data.token'
 }
@@ -58,6 +60,8 @@ retrieveSolarData () {
                               -H 'User-Agent: Mozilla/5.0' \
                               -H "authorization: Bearer $authToken")
 
+        bashio::log.info "Full Solar Data Response: ${dataRequest}"  # Includes code, message, and any extra fields
+
         bashio::log.info "Load Solar Data End"
     echo $dataRequest
 }
@@ -82,6 +86,8 @@ retrieveRealTimeSolarData () {
                               -H "$ACCEPT_HEADER" \
                               -H 'User-Agent: Mozilla/5.0' \
                               -H "authorization: Bearer $authToken")
+
+      bashio::log.info "Full Realtime Data Response: ${dataRequest}"  # Same, for realtime extras                              
 
     bashio::log.info "Load Realtime Data End"
     echo $dataRequest
