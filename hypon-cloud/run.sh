@@ -35,7 +35,8 @@ loadSensorData() {
       update-sensor "$SOLAR_PRODUCTION_REAL_TIME_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.power_pv')" $SOLAR_PRODUCTION_REAL_TIME_NAME
       update-sensor "$GRID_IMPORT_REAL_TIME_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.meter_power')" $GRID_IMPORT_REAL_TIME_NAME
       update-sensor "$SOLAR_USED_REAL_TIME_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.power_load')" $SOLAR_USED_REAL_TIME_NAME
-
+    fi
+    
     if [ "$solarDataResponseCode" != "20000" ]; then
       if [ "$solarDataResponseCode" = "40000" ]; then
         bashio::log.error "Plant access denied - this system_id is not associated with your account: $(bashio::config 'system_id'). Check settings in hypon.cloud."
