@@ -14,10 +14,10 @@ loadSensorData() {
 
   	solarDataResponseCode=$(echo $solarData | jq -r '.code')
 
-    bashio::log.debug "Response Code From loading solar data: $solarDataResponseCode"
+    bashio::log.info "Response Code From loading solar data: $solarDataResponseCode"
 
     if [ "$solarDataResponseCode" = "20000" ]; then
-      bashio::log.debug "Data retrieved successfully: $solarData"
+      bashio::log.info "Data retrieved successfully: $solarData"
 
       bashio::log.info "Updating Daily Sensors"
       update-sensor "$SOLAR_PRODUCTION_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.kwhac')" $SOLAR_PRODUCTION_SENSOR_NAME
