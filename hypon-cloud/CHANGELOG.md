@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.2
+- Changed debug output flags to info to better understand what Hypon API offers
+- 
 ## 1.1.1
 - Updating login process to include oem field based on hyponcloud changes
 - 

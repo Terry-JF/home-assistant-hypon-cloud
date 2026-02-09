@@ -74,7 +74,7 @@ retrieveRealTimeSolarData () {
   local dataUrl
   local dataRequest
 
-    bashio::log.info "Load Realtime Start"
+    bashio::log.info "Load Realtime Data Start"
 
     system_id=$(bashio::config 'system_id')
     dataUrl="$HYPON_URL/plant/$system_id/monitor?refresh=true"
