@@ -4,15 +4,18 @@ source scripts/home-assistant.sh
 source scripts/hypon.sh
 source scripts/variables.sh
 
+# Show configured hypon.cloud System ID in log to make it easier to spot issues if connection errors
+bashio::log.info "Using system_id from config: $(bashio::config 'system_id')"
+
 loadSensorData() {
   authToken=$1
 
   while true
   do
-  	solarData=$(retrieveSolarData "$authToken")
-  	realTimeData=$(retrieveRealTimeSolarData "$authToken")
+    solarData=$(retrieveSolarData "$authToken")
+    realTimeData=$(retrieveRealTimeSolarData "$authToken")
 
-  	solarDataResponseCode=$(echo $solarData | jq -r '.code')
+    solarDataResponseCode=$(echo $solarData | jq -r '.code')
 
     bashio::log.info "Response Code From loading solar data: $solarDataResponseCode"
 
@@ -33,11 +36,16 @@ loadSensorData() {
       update-sensor "$GRID_IMPORT_REAL_TIME_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.meter_power')" $GRID_IMPORT_REAL_TIME_NAME
       update-sensor "$SOLAR_USED_REAL_TIME_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.power_load')" $SOLAR_USED_REAL_TIME_NAME
 
-    else
-      bashio::log.error "Data Retrieval Error - updating auth token"
-      authToken=$(loginHypon)
-    fi
-  	sleep "$(bashio::config 'refresh_time')"
+    if [ "$solarDataResponseCode" != "20000" ]; then
+      if [ "$solarDataResponseCode" = "40000" ]; then
+        bashio::log.error "Plant access denied - this system_id is not associated with your account: $(bashio::config 'system_id'). Check settings in hypon.cloud."
+      else
+        bashio::log.error "Unexpected API error code: $solarDataResponseCode - forcing token refresh"
+        authToken=$(loginHypon)
+      fi
+    fi 
+
+    sleep "$(bashio::config 'refresh_time')"
   done
 }
 
