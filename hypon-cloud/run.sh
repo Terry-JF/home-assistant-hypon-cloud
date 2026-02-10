@@ -4,6 +4,10 @@ source scripts/home-assistant.sh
 source scripts/hypon.sh
 source scripts/variables.sh
 
+# Add these two debug lines
+bashio::log.info "INVERTER_AC_OUT_TODAY_TEMPLATE = ${INVERTER_AC_OUT_TODAY_TEMPLATE:-NOT DEFINED}"
+bashio::log.info "INVERTER_AC_OUT_TODAY_SENSOR_NAME = ${INVERTER_AC_OUT_TODAY_SENSOR_NAME:-NOT DEFINED}"
+
 # Show configured hypon.cloud System ID in log to make it easier to spot issues if connection errors
 bashio::log.info "Using system_id from config: $(bashio::config 'system_id')"
 
