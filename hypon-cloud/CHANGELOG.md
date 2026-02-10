@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.2.1
+## 1.1.2.2
 - Using above version number to track debug versions
 - 
 ## 1.1.1
