@@ -1,89 +1,87 @@
-#Names for Daily Sensors
-declare SOLAR_PRODUCTION_TODAY_SENSOR_NAME="sensor.solar_generated_today"
-declare GRID_IMPORT_TODAY_SENSOR_NAME="sensor.grid_import_today"
-declare GRID_EXPORT_TODAY_SENSOR_NAME="sensor.grid_export_today"
-declare ENERGY_CONSUMPTION_TODAY_SENSOR_NAME="sensor.energy_consumption_today"
-declare SOLAR_USED_TODAY_SENSOR_NAME="sensor.solar_used_today"
-declare BATTERY_USED_TODAY_SENSOR_NAME="sensor.battery_used_today"
-declare SOLAR_CHARGE_USED_TODAY_SENSOR_NAME="sensor.solar_battery_charge_today"
-
-#Names for Real Time Sensors
-#declare SOLAR_PRODUCTION_REAL_TIME_NAME="sensor.solar_energy_now"
-#declare GRID_IMPORT_REAL_TIME_NAME="sensor.grid_import_now"
-#declare SOLAR_USED_REAL_TIME_NAME="sensor.solar_used_now"
-
-#Template Values for Daily Sensors
-declare SOLAR_PRODUCTION_TODAY_TEMPLATE='{"state": "unknown", "attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar generated today"}}'
-declare GRID_IMPORT_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Grid Import today"}}'
-declare GRID_EXPORT_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Grid Export Amount"}}'
-declare ENERGY_CONSUMPTION_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Energy Consumption today"}}'
-declare SOLAR_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar Used Today"}}'
-declare BATTERY_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Battery Used Today"}}'
-declare SOLAR_CHARGE_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar to Battery Used Today"}}'
-
-#Template Values for Real Time Sensors
-#declare SOLAR_PRODUCTION_REAL_TIME_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "energy","friendly_name": "Solar Energy Realtime"}}'
-#declare GRID_IMPORT_REAL_TIME_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "energy","friendly_name": "Grid Used Now"}}'
-#declare SOLAR_USED_REAL_TIME_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "energy","friendly_name": "Solar Used Now"}}'
-
-# Additional Sensors below added/renamed 10 Feb 2026 by Terry-JF
 # Power is measured in Watts (W) at a point in time, Energy is measured in kilo-Watt-hours (kWh) and is power delivered over a time period
-# Names and Templates for Additional Daily Sensors
-declare NET_GRID_USAGE_TODAY_SENSOR_NAME="sensor.net_grid_usage_today"
-declare NET_GRID_USAGE_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Net Grid Usage Today"}}'
 
-# Names and Templates for existing Realtime Sensors - renamed for clarity
-declare PV_POWER_NOW_SENSOR_NAME="sensor.pv_power_now"  # Renamed from solar_energy_now for clarity
-declare PV_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "PV Power Now"}}'
+# Names for Daily/Monthly/Yearly Totals Sensors                                       source data item from hypon.cloud
+declare INVERTER_AC_OUT_TODAY_SENSOR_NAME="sensor.inverter_ac_out_today"            # kwhac - Energy from inverter AC output today
 
-declare GRID_POWER_NOW_SENSOR_NAME="sensor.grid_power_now"  # Renamed from grid_import_now (handles export as negative)
-declare GRID_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Grid Power Now"}}'
+declare TOTAL_ENERGY_USED_TODAY_SENSOR_NAME="sensor.total_energy_used_today"        # load - Total energy consumed by home today (total of 3 items below)
+declare BATTERY_USED_TODAY_SENSOR_NAME="sensor.battery_used_today"                  # load_from_bat - Energy provided from battery today
+declare GRID_USED_TODAY_SENSOR_NAME="sensor.grid_used_today"                        # load_from_grid - Energy provided from grid today (imported)
+declare PV_USED_TODAY_SENSOR_NAME="sensor.pv_used_today"                            # load_from_pv - Energy provided from solar panels today
 
-declare LOAD_POWER_NOW_SENSOR_NAME="sensor.load_power_now"  # Renamed from solar_used_now (more accurate)
-declare LOAD_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Load Power Now"}}'
+declare TOTAL_PV_GENERATED_TODAY_SENSOR_NAME="sensor.total_pv_generated_today"      # pvkwh - Total energy generated by solar panels today (total of 3 items below)
+declare PV_TO_BATTERY_TODAY_SENSOR_NAME="sensor.pv_to_battery_today"                # pv_to_bat - Energy provided to battery
+declare PV_TO_GRID_TODAY_SENSOR_NAME="sensor.pv_to_grid_today"                      # pv_to_grid - Energy provided to grid (exported)
+declare PV_TO_LOAD_TODAY_SENSOR_NAME="sensor.pv_to_load_today"                      # pv_to_load - Energy consumed directly by home
 
-# Names and Templates for Additional Realtime / Cumulative Sensors
-declare BATTERY_SOC_SENSOR_NAME="sensor.battery_soc"
-declare BATTERY_SOC_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "%","device_class": "battery","friendly_name": "Battery State of Charge"}}'
+declare TOTAL_ENERGY_USED_LESS_INVERTER_OUTPUT_SENSOR_NAME="sensor.energy_used_less_inverter_output"  # balance - is load - kwhac
 
-declare BATTERY_CHARGE_POWER_NOW_SENSOR_NAME="sensor.battery_charge_power_now"
-declare BATTERY_CHARGE_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Battery Charge Power Now"}}'
+declare SAVINGS_TODAY_SENSOR_NAME="sensor.savings_today"                            # today_earning - assume these use the configured kWh unit cost for exported energy
+declare SAVINGS_MONTH_SENSOR_NAME="sensor.savings_month"                            # month_earning
+declare SAVINGS_TOTAL_SENSOR_NAME="sensor.savings_total"                            # total_earning
 
-declare PV_GENERATION_MONTH_SENSOR_NAME="sensor.pv_generation_month"
-declare PV_GENERATION_MONTH_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation This Month"}}'
+declare PV_GENERATION_TOTAL_SENSOR_NAME="sensor.pv_generation_total"                # e_total - assume these keep running totals of pv generation
+declare PV_GENERATION_MONTH_SENSOR_NAME="sensor.pv_generation_month"                # e_month
+declare PV_GENERATION_TODAY_SENSOR_NAME="sensor.pv_generation_today"                # e_today
+declare PV_GENERATION_YEAR_SENSOR_NAME="sensor.pv_generation_year"                  # e_year
 
-declare PV_GENERATION_YEAR_SENSOR_NAME="sensor.pv_generation_year"
-declare PV_GENERATION_YEAR_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation This Year"}}'
+declare TREES_SAVED_SENSOR_NAME="sensor.trees_saved"                                # total_tree
+declare CO2_SAVED_SENSOR_NAME="sensor.co2_saved"                                    # total_co2
+declare DIESEL_SAVED_SENSOR_NAME="sensor.diesel_saved"                              # total_diesel
 
-declare PV_GENERATION_TOTAL_SENSOR_NAME="sensor.pv_generation_total"
-declare PV_GENERATION_TOTAL_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation Lifetime"}}'
+declare SELF_CONSUMPTION_PERCENT_SENSOR_NAME="sensor.self_consumption_percent"      # percent - Assuming 'percent' means portion of load provided by solar panels
 
-declare INVERTER_WARNING_SENSOR_NAME="sensor.inverter_warning"
-declare INVERTER_WARNING_TEMPLATE='{"state": "unknown","attributes": {"friendly_name": "Inverter Warning Code"}}'  # No unit/class as it's a code
+# Names for Real Time Sensors
+declare GRID_POWER_NOW_SENSOR_NAME="sensor.grid_power_now"                          # meter_power - Renamed from grid_import_now (handles export as negative)
+declare LOAD_POWER_NOW_SENSOR_NAME="sensor.load_power_now"                          # power_load - Renamed from solar_used_now (more accurate)
+declare BATTERY_CHARGE_POWER_NOW_SENSOR_NAME="sensor.battery_charge_power_now"      # w_cha - Assuming positive for battery charge and negative for battery discharge
+declare PV_POWER_NOW_SENSOR_NAME="sensor.pv_power_now"                              # power_pv - Renamed from solar_energy_now for clarity
+declare BATTERY_SOC_SENSOR_NAME="sensor.battery_soc"                                # soc
 
-declare SELF_CONSUMPTION_PERCENT_SENSOR_NAME="sensor.self_consumption_percent"  # Assuming 'percent' is this
-declare SELF_CONSUMPTION_PERCENT_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "%","friendly_name": "Self Consumption Percent"}}'
+# Other misc.
+declare MICRO_POWER_SENSOR_NAME="sensor.micro_power"                                # micro - meaning unclear, but add for completeness
+declare INVERTER_WARNING_SENSOR_NAME="sensor.inverter_warning"                      # warning
+declare MONETARY_UNIT_SENSOR_NAME="sensor.monetary_unit"                            # not sure if I need this yet?
 
-declare MICRO_POWER_SENSOR_NAME="sensor.micro_power"  # Unclear, but add for completeness
-declare MICRO_POWER_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Micro Power"}}'
 
-declare SAVINGS_TODAY_SENSOR_NAME="sensor.savings_today"
+# Template Values for Daily/Monthly/Yearly Totals Sensors
+declare INVERTER_AC_OUT_TODAY_TEMPLATE='{"state": "unknown", "attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Inverter AC Output Today"}}'
+
+declare TOTAL_ENERGY_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Total Energy Used Today"}}'
+declare BATTERY_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Battery Used Today"}}'
+declare GRID_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Grid Used Today"}}'
+declare PV_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar Used Today"}}'
+
+declare TOTAL PV_GENERATED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Total Solar Energy Generated Today"}}'
+declare PV_TO_BATTERY_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar to Battery Used Today"}}'
+declare PV_TO_GRID_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar to Grid (Exported) Today"}}'
+declare PV_TO_LOAD_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar to Load Used Today"}}'
+
+declare TOTAL_ENERGY_USED_LESS_INVERTER_OUTPUT_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Total Energy Used Less Inverter Output Today"}}'
+
 declare SAVINGS_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "GBP","device_class": "monetary","friendly_name": "Savings Today"}}'  # Adjust unit to your currency, e.g. "GBP" for UK
-
-declare SAVINGS_MONTH_SENSOR_NAME="sensor.savings_month"
-declare SAVINGS_MONTH_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "GBP","device_class": "monetary","friendly_name": "Savings Month"}}'
-
-declare SAVINGS_TOTAL_SENSOR_NAME="sensor.savings_total"
+declare SAVINGS_MONTH_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "GBP","device_class": "monetary","friendly_name": "Savings This Month"}}'
 declare SAVINGS_TOTAL_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "GBP","device_class": "monetary","friendly_name": "Savings Lifetime"}}'
 
-declare TREES_SAVED_SENSOR_NAME="sensor.trees_saved"
+declare PV_GENERATION_TOTAL_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation Lifetime"}}'
+declare PV_GENERATION_MONTH_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation This Month"}}'
+declare PV_GENERATION_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation Today"}}'
+declare PV_GENERATION_YEAR_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation This Year"}}'
+
 declare TREES_SAVED_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","friendly_name": "Trees Saved"}}'  # No standard unit/class
-
-declare CO2_SAVED_SENSOR_NAME="sensor.co2_saved"
 declare CO2_SAVED_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "tons","friendly_name": "CO2 Saved"}}'
-
-declare DIESEL_SAVED_SENSOR_NAME="sensor.diesel_saved"
 declare DIESEL_SAVED_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "liters","friendly_name": "Diesel Saved"}}'
 
-declare MONETARY_UNIT_SENSOR_NAME="sensor.monetary_unit"
+declare SELF_CONSUMPTION_PERCENT_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "%","friendly_name": "Self Consumption Percent"}}'
+
+# Template Values for Real Time Sensors
+declare GRID_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Grid Power Now"}}'
+declare LOAD_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Load Power Now"}}'
+declare BATTERY_CHARGE_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Battery Charge Power Now"}}'
+declare PV_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "PV Power Now"}}'
+declare BATTERY_SOC_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "%","device_class": "battery","friendly_name": "Battery State of Charge"}}'
+
+# Other Misc.
+declare MICRO_POWER_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Micro Power"}}'
+declare INVERTER_WARNING_TEMPLATE='{"state": "unknown","attributes": {"friendly_name": "Inverter Warning Code"}}'  # No unit/class as it's a code
 declare MONETARY_UNIT_TEMPLATE='{"state": "unknown","attributes": {"friendly_name": "Monetary Unit"}}'  # String, no unit
+

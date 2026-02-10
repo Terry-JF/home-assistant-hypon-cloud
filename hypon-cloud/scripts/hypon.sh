@@ -32,7 +32,7 @@ loginHypon () {
       -H 'User-Agent: Mozilla/5.0' \
       --data-raw "$loginData")
 
-      bashio::log.info "Full Login Response: ${loginResponse}"  # Dump raw JSON for debugging
+      bashio::log.debug "Full Login Response: ${loginResponse}"  # Dump raw JSON for debugging
 
       bashio::log.info "Login End"
       echo $loginResponse | jq -r '.data.token'
