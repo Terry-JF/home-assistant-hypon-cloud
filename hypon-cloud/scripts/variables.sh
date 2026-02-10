@@ -1,16 +1,16 @@
 #Names for Daily Sensors
-declare SOLAR_PRODUCTION_SENSOR_NAME="sensor.solar_generated_today"
-declare GRID_IMPORT_SENSOR_NAME="sensor.grid_import_today"
-declare GRID_EXPORT_SENSOR_NAME="sensor.grid_export_amount"
+declare SOLAR_PRODUCTION_TODAY_SENSOR_NAME="sensor.solar_generated_today"
+declare GRID_IMPORT_TODAY_SENSOR_NAME="sensor.grid_import_today"
+declare GRID_EXPORT_TODAY_SENSOR_NAME="sensor.grid_export_today"
 declare ENERGY_CONSUMPTION_TODAY_SENSOR_NAME="sensor.energy_consumption_today"
 declare SOLAR_USED_TODAY_SENSOR_NAME="sensor.solar_used_today"
 declare BATTERY_USED_TODAY_SENSOR_NAME="sensor.battery_used_today"
 declare SOLAR_CHARGE_USED_TODAY_SENSOR_NAME="sensor.solar_battery_charge_today"
 
 #Names for Real Time Sensors
-declare SOLAR_PRODUCTION_REAL_TIME_NAME="sensor.solar_energy_now"
-declare GRID_IMPORT_REAL_TIME_NAME="sensor.grid_import_now"
-declare SOLAR_USED_REAL_TIME_NAME="sensor.solar_used_now"
+#declare SOLAR_PRODUCTION_REAL_TIME_NAME="sensor.solar_energy_now"
+#declare GRID_IMPORT_REAL_TIME_NAME="sensor.grid_import_now"
+#declare SOLAR_USED_REAL_TIME_NAME="sensor.solar_used_now"
 
 #Template Values for Daily Sensors
 declare SOLAR_PRODUCTION_TODAY_TEMPLATE='{"state": "unknown", "attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar generated today"}}'
@@ -22,15 +22,17 @@ declare BATTERY_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_c
 declare SOLAR_CHARGE_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar to Battery Used Today"}}'
 
 #Template Values for Real Time Sensors
-declare SOLAR_PRODUCTION_REAL_TIME_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "energy","friendly_name": "Solar Energy Realtime"}}'
-declare GRID_IMPORT_REAL_TIME_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "energy","friendly_name": "Grid Used Now"}}'
-declare SOLAR_USED_REAL_TIME_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "energy","friendly_name": "Solar Used Now"}}'
+#declare SOLAR_PRODUCTION_REAL_TIME_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "energy","friendly_name": "Solar Energy Realtime"}}'
+#declare GRID_IMPORT_REAL_TIME_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "energy","friendly_name": "Grid Used Now"}}'
+#declare SOLAR_USED_REAL_TIME_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "energy","friendly_name": "Solar Used Now"}}'
 
+# Additional Sensors below added/renamed 10 Feb 2026 by Terry-JF
+# Power is measured in Watts (W) at a point in time, Energy is measured in kilo-Watt-hours (kWh) and is power delivered over a time period
 # Names and Templates for Additional Daily Sensors
 declare NET_GRID_USAGE_TODAY_SENSOR_NAME="sensor.net_grid_usage_today"
 declare NET_GRID_USAGE_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Net Grid Usage Today"}}'
 
-# Names and Templates for Additional Realtime / Cumulative Sensors
+# Names and Templates for existing Realtime Sensors - renamed for clarity
 declare PV_POWER_NOW_SENSOR_NAME="sensor.pv_power_now"  # Renamed from solar_energy_now for clarity
 declare PV_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "PV Power Now"}}'
 
@@ -40,6 +42,7 @@ declare GRID_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"state_class
 declare LOAD_POWER_NOW_SENSOR_NAME="sensor.load_power_now"  # Renamed from solar_used_now (more accurate)
 declare LOAD_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Load Power Now"}}'
 
+# Names and Templates for Additional Realtime / Cumulative Sensors
 declare BATTERY_SOC_SENSOR_NAME="sensor.battery_soc"
 declare BATTERY_SOC_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "%","device_class": "battery","friendly_name": "Battery State of Charge"}}'
 
@@ -64,14 +67,14 @@ declare SELF_CONSUMPTION_PERCENT_TEMPLATE='{"state": "unknown","attributes": {"s
 declare MICRO_POWER_SENSOR_NAME="sensor.micro_power"  # Unclear, but add for completeness
 declare MICRO_POWER_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Micro Power"}}'
 
-declare DAILY_SAVINGS_SENSOR_NAME="sensor.daily_savings"
-declare DAILY_SAVINGS_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "GBP","device_class": "monetary","friendly_name": "Daily Savings"}}'  # Adjust unit to your currency, e.g. "GBP" for UK
+declare SAVINGS_TODAY_SENSOR_NAME="sensor.savings_today"
+declare SAVINGS_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "GBP","device_class": "monetary","friendly_name": "Savings Today"}}'  # Adjust unit to your currency, e.g. "GBP" for UK
 
-declare MONTHLY_SAVINGS_SENSOR_NAME="sensor.monthly_savings"
-declare MONTHLY_SAVINGS_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "GBP","device_class": "monetary","friendly_name": "Monthly Savings"}}'
+declare SAVINGS_MONTH_SENSOR_NAME="sensor.savings_month"
+declare SAVINGS_MONTH_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "GBP","device_class": "monetary","friendly_name": "Savings Month"}}'
 
-declare LIFETIME_SAVINGS_SENSOR_NAME="sensor.lifetime_savings"
-declare LIFETIME_SAVINGS_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "GBP","device_class": "monetary","friendly_name": "Lifetime Savings"}}'
+declare SAVINGS_TOTAL_SENSOR_NAME="sensor.savings_total"
+declare SAVINGS_TOTAL_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "GBP","device_class": "monetary","friendly_name": "Savings Lifetime"}}'
 
 declare TREES_SAVED_SENSOR_NAME="sensor.trees_saved"
 declare TREES_SAVED_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","friendly_name": "Trees Saved"}}'  # No standard unit/class
