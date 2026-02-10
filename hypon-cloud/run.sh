@@ -22,21 +22,49 @@ loadSensorData() {
     if [ "$solarDataResponseCode" = "20000" ]; then
       bashio::log.info "Data retrieved successfully: $solarData"
 
-      bashio::log.info "Updating Daily Sensors"
-      update-sensor "$SOLAR_PRODUCTION_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.kwhac')" $SOLAR_PRODUCTION_SENSOR_NAME
-      update-sensor "$GRID_IMPORT_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.load_from_grid')" $GRID_IMPORT_SENSOR_NAME
-      update-sensor "$GRID_EXPORT_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.pv_to_grid')" $GRID_EXPORT_SENSOR_NAME
-      update-sensor "$ENERGY_CONSUMPTION_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.load')" $ENERGY_CONSUMPTION_TODAY_SENSOR_NAME
-      update-sensor "$SOLAR_USED_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.load_from_pv')" $SOLAR_USED_TODAY_SENSOR_NAME
-      update-sensor "$BATTERY_USED_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.load_from_bat')" $BATTERY_USED_TODAY_SENSOR_NAME
-      update-sensor "$SOLAR_CHARGE_USED_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.pv_to_bat')" $SOLAR_CHARGE_USED_TODAY_SENSOR_NAME
+      bashio::log.info "Updating SolarData Sensors" # 10
+      update-sensor "$INVERTER_AC_OUT_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.kwhac')" $INVERTER_AC_OUT_TODAY_SENSOR_NAME
 
-      bashio::log.info "Updating Real Time Sensors"
-      update-sensor "$SOLAR_PRODUCTION_REAL_TIME_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.power_pv')" $SOLAR_PRODUCTION_REAL_TIME_NAME
-      update-sensor "$GRID_IMPORT_REAL_TIME_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.meter_power')" $GRID_IMPORT_REAL_TIME_NAME
-      update-sensor "$SOLAR_USED_REAL_TIME_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.power_load')" $SOLAR_USED_REAL_TIME_NAME
+      update-sensor "$TOTAL_ENERGY_USED_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.load')" $TOTAL_ENERGY_USED_TODAY_SENSOR_NAME
+      update-sensor "$BATTERY_USED_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.load_from_bat')" $BATTERY_USED_TODAY_SENSOR_NAME
+      update-sensor "$GRID_USED_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.load_from_grid')" $GRID_USED_TODAY_SENSOR_NAME
+      update-sensor "$PV_USED_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.load_from_pv')" $PV_USED_TODAY_SENSOR_NAME
+
+      update-sensor "$TOTAL_PV_GENERATED_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.pvkwh')" $TOTAL_PV_GENERATED_TODAY_SENSOR_NAME
+      update-sensor "$PV_TO_BATTERY_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.pv_to_bat')" $PV_TO_BATTERY_TODAY_SENSOR_NAME
+      update-sensor "$PV_TO_GRID_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.pv_to_grid')" $PV_TO_GRID_TODAY_SENSOR_NAME
+      update-sensor "$PV_TO_LOAD_TODAY_TEMPLATE" "$(echo "$solarData" | jq -r '.data.pv_to_load')" $PV_TO_LOAD_TODAY_SENSOR_NAME
+
+      update-sensor "$TOTAL_ENERGY_USED_LESS_INVERTER_OUTPUT_TEMPLATE" "$(echo "$solarData" | jq -r '.data.balance')" $TOTAL_ENERGY_USED_LESS_INVERTER_OUTPUT_SENSOR_NAME
+
+      bashio::log.info "Data retrieved successfully: $realTimeData"
+
+      bashio::log.info "Updating RealTimeData Sensors"  # 18
+      update-sensor "$SAVINGS_TODAY_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.today_earning')" $SAVINGS_TODAY_SENSOR_NAME
+      update-sensor "$SAVINGS_MONTH_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.month_earning')" $SAVINGS_MONTH_SENSOR_NAME
+      update-sensor "$SAVINGS_TOTAL_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.total_earning')" $SAVINGS_TOTAL_SENSOR_NAME
+
+      update-sensor "$PV_GENERATION_TOTAL_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.e_total')" $PV_GENERATION_TOTAL_SENSOR_NAME
+      update-sensor "$PV_GENERATION_MONTH_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.e_month')" $PV_GENERATION_MONTH_SENSOR_NAME
+      update-sensor "$PV_GENERATION_TODAY_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.e_today')" $PV_GENERATION_TODAY_SENSOR_NAME
+      update-sensor "$PV_GENERATION_YEAR_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.e_year')" $PV_GENERATION_YEAR_SENSOR_NAME
+
+      update-sensor "$TREES_SAVED_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.total_tree')" $TREES_SAVED_SENSOR_NAME
+      update-sensor "$CO2_SAVED_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.total_co2')" $CO2_SAVED_SENSOR_NAME
+      update-sensor "$DIESEL_SAVED_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.total_diesel')" $DIESEL_SAVED_SENSOR_NAME
+
+      update-sensor "$SELF_CONSUMPTION_PERCENT_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.percent')" $SELF_CONSUMPTION_PERCENT_SENSOR_NAME
+
+      update-sensor "$GRID_POWER_NOW_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.meter_power')" $GRID_POWER_NOW_SENSOR_NAME
+      update-sensor "$LOAD_POWER_NOW_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.power_load')" $LOAD_POWER_NOW_SENSOR_NAME
+      update-sensor "$BATTERY_POWER_CHARGE_NOW_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.w_cha')" $BATTERY_POWER_CHARGE_NOW_SENSOR_NAME
+      update-sensor "$PV_POWER_NOW_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.power_pv')" $PV_POWER_NOW_SENSOR_NAME
+      update-sensor "$BATTERY_SOC_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.soc')" $BATTERY_SOC_SENSOR_NAME
+
+      update-sensor "$MICRO_POWER_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.micro')" $MICRO_POWER_SENSOR_NAME
+      update-sensor "$INVERTER_WARNING_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.warning')" $INVERTER_WARNING_SENSOR_NAME
     fi
-    
+
     if [ "$solarDataResponseCode" != "20000" ]; then
       if [ "$solarDataResponseCode" = "40000" ]; then
         bashio::log.error "Plant access denied - this system_id is not associated with your account: $(bashio::config 'system_id'). Check settings in hypon.cloud."
