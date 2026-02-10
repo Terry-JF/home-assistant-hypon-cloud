@@ -61,7 +61,7 @@ loadSensorData() {
 
       update-sensor "$GRID_POWER_NOW_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.meter_power')" $GRID_POWER_NOW_SENSOR_NAME
       update-sensor "$LOAD_POWER_NOW_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.power_load')" $LOAD_POWER_NOW_SENSOR_NAME
-      update-sensor "$BATTERY_POWER_CHARGE_NOW_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.w_cha')" $BATTERY_POWER_CHARGE_NOW_SENSOR_NAME
+      update-sensor "$BATTERY_CHARGE_POWER_NOW_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.w_cha')" $BATTERY_CHARGE_POWER_NOW_SENSOR_NAME
       update-sensor "$PV_POWER_NOW_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.power_pv')" $PV_POWER_NOW_SENSOR_NAME
       update-sensor "$BATTERY_SOC_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.soc')" $BATTERY_SOC_SENSOR_NAME
 
