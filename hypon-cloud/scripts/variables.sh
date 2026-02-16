@@ -15,18 +15,10 @@ declare PV_TO_LOAD_TODAY_SENSOR_NAME="sensor.pv_to_load_today"                  
 
 declare TOTAL_ENERGY_USED_LESS_INVERTER_OUTPUT_SENSOR_NAME="sensor.energy_used_less_inverter_output"  # balance - is load - kwhac
 
-declare SAVINGS_TODAY_SENSOR_NAME="sensor.savings_today"                            # today_earning - assume these use the configured kWh unit cost for exported energy
-declare SAVINGS_MONTH_SENSOR_NAME="sensor.savings_month"                            # month_earning
-declare SAVINGS_TOTAL_SENSOR_NAME="sensor.savings_total"                            # total_earning
-
 declare PV_GENERATION_TOTAL_SENSOR_NAME="sensor.pv_generation_total"                # e_total - assume these keep running totals of pv generation
 declare PV_GENERATION_MONTH_SENSOR_NAME="sensor.pv_generation_month"                # e_month
 declare PV_GENERATION_TODAY_SENSOR_NAME="sensor.pv_generation_today"                # e_today
 declare PV_GENERATION_YEAR_SENSOR_NAME="sensor.pv_generation_year"                  # e_year
-
-declare TREES_SAVED_SENSOR_NAME="sensor.trees_saved"                                # total_tree
-declare CO2_SAVED_SENSOR_NAME="sensor.co2_saved"                                    # total_co2
-declare DIESEL_SAVED_SENSOR_NAME="sensor.diesel_saved"                              # total_diesel
 
 declare SELF_CONSUMPTION_PERCENT_SENSOR_NAME="sensor.self_consumption_percent"      # percent - Assuming 'percent' means portion of load provided by solar panels
 
@@ -40,48 +32,38 @@ declare BATTERY_SOC_SENSOR_NAME="sensor.battery_soc"                            
 # Other misc.
 declare MICRO_POWER_SENSOR_NAME="sensor.micro_power"                                # micro - meaning unclear, but add for completeness
 declare INVERTER_WARNING_SENSOR_NAME="sensor.inverter_warning"                      # warning
-declare MONETARY_UNIT_SENSOR_NAME="sensor.monetary_unit"                            # not sure if I need this yet?
 
 
 # Template Values for Daily/Monthly/Yearly Totals Sensors
-declare INVERTER_AC_OUT_TODAY_TEMPLATE='{"state": "unknown", "attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Inverter AC Output Today"}}'
+declare INVERTER_AC_OUT_TODAY_TEMPLATE='{"state": "unknown", "attributes": {"unique_id": "hypon_cloud_inverter_ac_out_today","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Inverter AC Output Today"}}'
 
-declare TOTAL_ENERGY_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Total Energy Used Today"}}'
-declare BATTERY_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Battery Used Today"}}'
-declare GRID_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Grid Used Today"}}'
-declare PV_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar Used Today"}}'
+declare TOTAL_ENERGY_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_total_energy_used_today","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Total Energy Used Today"}}'
+declare BATTERY_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_battery_used_today","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Battery Used Today"}}'
+declare GRID_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_grid_used_today","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Grid Used Today"}}'
+declare PV_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_pv_used_today","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar Used Today"}}'
 
-declare TOTAL_PV_GENERATED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Total Solar Energy Generated Today"}}'
-declare PV_TO_BATTERY_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar to Battery Used Today"}}'
-declare PV_TO_GRID_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar to Grid (Exported) Today"}}'
-declare PV_TO_LOAD_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar to Load Used Today"}}'
+declare TOTAL_PV_GENERATED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_total_pv_generated_today","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Total Solar Energy Generated Today"}}'
+declare PV_TO_BATTERY_TODAY_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_pv_to_battery_today","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar to Battery Used Today"}}'
+declare PV_TO_GRID_TODAY_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_pv_to_grid_today","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar to Grid (Exported) Today"}}'
+declare PV_TO_LOAD_TODAY_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_pv_to_load_today","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Solar to Load Used Today"}}'
 
-declare TOTAL_ENERGY_USED_LESS_INVERTER_OUTPUT_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Total Energy Used Less Inverter Output Today"}}'
+declare TOTAL_ENERGY_USED_LESS_INVERTER_OUTPUT_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_energy_used_less_inverter_output","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Total Energy Used Less Inverter Output Today"}}'
 
-declare SAVINGS_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "GBP","device_class": "monetary","friendly_name": "Savings Today"}}'  # Adjust unit to your currency, e.g. "GBP" for UK
-declare SAVINGS_MONTH_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "GBP","device_class": "monetary","friendly_name": "Savings This Month"}}'
-declare SAVINGS_TOTAL_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "GBP","device_class": "monetary","friendly_name": "Savings Lifetime"}}'
+declare PV_GENERATION_TOTAL_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_pv_generation_total","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation Lifetime"}}'
+declare PV_GENERATION_MONTH_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_pv_generation_month","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation This Month"}}'
+declare PV_GENERATION_TODAY_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_pv_generation_today","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation Today"}}'
+declare PV_GENERATION_YEAR_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_pv_generation_year","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation This Year"}}'
 
-declare PV_GENERATION_TOTAL_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation Lifetime"}}'
-declare PV_GENERATION_MONTH_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation This Month"}}'
-declare PV_GENERATION_TODAY_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation Today"}}'
-declare PV_GENERATION_YEAR_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation This Year"}}'
-
-declare TREES_SAVED_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","friendly_name": "Trees Saved"}}'  # No standard unit/class
-declare CO2_SAVED_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "tons","friendly_name": "CO2 Saved"}}'
-declare DIESEL_SAVED_TEMPLATE='{"state": "unknown","attributes": {"state_class": "total_increasing","unit_of_measurement": "liters","friendly_name": "Diesel Saved"}}'
-
-declare SELF_CONSUMPTION_PERCENT_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "%","friendly_name": "Self Consumption Percent"}}'
+declare SELF_CONSUMPTION_PERCENT_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_self_consumption_percent","state_class": "measurement","unit_of_measurement": "%","friendly_name": "Self Consumption Percent"}}'
 
 # Template Values for Real Time Sensors
-declare GRID_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Grid Power Now"}}'
-declare LOAD_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Load Power Now"}}'
-declare BATTERY_CHARGE_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Battery Charge Power Now"}}'
-declare PV_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "PV Power Now"}}'
-declare BATTERY_SOC_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "%","device_class": "battery","friendly_name": "Battery State of Charge"}}'
+declare GRID_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_grid_power_now","state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Grid Power Now"}}'
+declare LOAD_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_load_power_now","state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Load Power Now"}}'
+declare BATTERY_CHARGE_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_battery_charge_power_now","state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Battery Charge Power Now"}}'
+declare PV_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_pv_power_now","state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "PV Power Now"}}'
+declare BATTERY_SOC_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_battery_soc", "state_class": "measurement","unit_of_measurement": "%","device_class": "battery","friendly_name": "Battery State of Charge"}}'
 
 # Other Misc.
-declare MICRO_POWER_TEMPLATE='{"state": "unknown","attributes": {"state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Micro Power"}}'
-declare INVERTER_WARNING_TEMPLATE='{"state": "unknown","attributes": {"friendly_name": "Inverter Warning Code"}}'  # No unit/class as it's a code
-declare MONETARY_UNIT_TEMPLATE='{"state": "unknown","attributes": {"friendly_name": "Monetary Unit"}}'  # String, no unit
+declare MICRO_POWER_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_micro_power","state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Micro Power"}}'
+declare INVERTER_WARNING_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_inverter_warning","friendly_name": "Inverter Warning Code"}}'  # No unit/class as it's a code
 

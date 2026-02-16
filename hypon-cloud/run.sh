@@ -43,19 +43,11 @@ loadSensorData() {
 
       bashio::log.info "Data retrieved successfully: $realTimeData"
 
-      bashio::log.info "Updating RealTimeData Sensors"  # 18
-      update-sensor "$SAVINGS_TODAY_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.today_earning')" $SAVINGS_TODAY_SENSOR_NAME
-      update-sensor "$SAVINGS_MONTH_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.month_earning')" $SAVINGS_MONTH_SENSOR_NAME
-      update-sensor "$SAVINGS_TOTAL_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.total_earning')" $SAVINGS_TOTAL_SENSOR_NAME
-
+      bashio::log.info "Updating RealTimeData Sensors"  # 12
       update-sensor "$PV_GENERATION_TOTAL_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.e_total')" $PV_GENERATION_TOTAL_SENSOR_NAME
       update-sensor "$PV_GENERATION_MONTH_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.e_month')" $PV_GENERATION_MONTH_SENSOR_NAME
       update-sensor "$PV_GENERATION_TODAY_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.e_today')" $PV_GENERATION_TODAY_SENSOR_NAME
       update-sensor "$PV_GENERATION_YEAR_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.e_year')" $PV_GENERATION_YEAR_SENSOR_NAME
-
-      update-sensor "$TREES_SAVED_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.total_tree')" $TREES_SAVED_SENSOR_NAME
-      update-sensor "$CO2_SAVED_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.total_co2')" $CO2_SAVED_SENSOR_NAME
-      update-sensor "$DIESEL_SAVED_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.total_diesel')" $DIESEL_SAVED_SENSOR_NAME
 
       update-sensor "$SELF_CONSUMPTION_PERCENT_TEMPLATE" "$(echo "$realTimeData" | jq -r '.data.percent')" $SELF_CONSUMPTION_PERCENT_SENSOR_NAME
 
