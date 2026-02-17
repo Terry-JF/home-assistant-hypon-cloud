@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.2.5
+## 1.1.2.6
 - Using above version number to track debug versions uploaded to github
 - 
 ## 1.1.1
