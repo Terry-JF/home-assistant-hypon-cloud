@@ -13,12 +13,12 @@ declare PV_TO_BATTERY_TODAY_SENSOR_NAME="sensor.hypon_pv_to_battery_today"      
 declare PV_TO_GRID_TODAY_SENSOR_NAME="sensor.hypon_pv_to_grid_today"                      # pv_to_grid - Energy provided to grid (exported)
 declare PV_TO_LOAD_TODAY_SENSOR_NAME="sensor.hypon_pv_to_load_today"                      # pv_to_load - Energy consumed directly by home
 
-declare TOTAL_ENERGY_USED_LESS_INVERTER_OUTPUT_SENSOR_NAME="sensor.hypon_energy_used_less_inverter_output"  # balance - is 'load' minus 'kwhac'
+declare TOTAL_ENERGY_USED_LESS_INVERTER_OUTPUT_SENSOR_NAME="sensor.hypon_energy_used_less_inverter_output"  # balance - is always 'load' minus 'kwhac'
 
 declare PV_GENERATION_TOTAL_SENSOR_NAME="sensor.hypon_pv_generation_total"                # e_total - assume these keep running totals of pv generation
-declare PV_GENERATION_MONTH_SENSOR_NAME="sensor.hypon_pv_generation_month"                # e_month
-declare PV_GENERATION_TODAY_SENSOR_NAME="sensor.hypon_pv_generation_today"                # e_today
-declare PV_GENERATION_YEAR_SENSOR_NAME="sensor.hypon_pv_generation_year"                  # e_year
+declare PV_GENERATION_MONTH_SENSOR_NAME="sensor.hypon_pv_generation_month"                # e_month - buggy - always reads same as today sensor below
+declare PV_GENERATION_TODAY_SENSOR_NAME="sensor.hypon_pv_generation_today"                # e_today - seems to work OK, keeps track of pv output today
+declare PV_GENERATION_YEAR_SENSOR_NAME="sensor.hypon_pv_generation_year"                  # e_year - buggy - always reads 0
 
 # Names for Power & Other Sensors
 declare SELF_CONSUMPTION_PERCENT_SENSOR_NAME="sensor.hypon_self_consumption_percent"      # percent - Assuming 'percent' means portion of load provided by solar panels
@@ -26,9 +26,9 @@ declare GRID_POWER_NOW_SENSOR_NAME="sensor.hypon_grid_power_now"                
 declare LOAD_POWER_NOW_SENSOR_NAME="sensor.hypon_load_power_now"                          # power_load - Renamed from solar_used_now (more accurate)
 declare BATTERY_CHARGE_POWER_NOW_SENSOR_NAME="sensor.hypon_battery_charge_power_now"      # w_cha - Assuming positive for battery charge and negative for battery discharge
 declare PV_POWER_NOW_SENSOR_NAME="sensor.hypon_pv_power_now"                              # power_pv - Renamed from solar_energy_now for clarity
-declare BATTERY_SOC_SENSOR_NAME="sensor.hypon_battery_soc"                                # soc
-declare MICRO_POWER_SENSOR_NAME="sensor.hypon_micro_power"                                # micro - meaning unclear, but add for completeness
-declare INVERTER_WARNING_SENSOR_NAME="sensor.hypon_inverter_warning"                      # warning
+declare BATTERY_SOC_SENSOR_NAME="sensor.hypon_battery_soc_manual"                         # state of charge as %
+declare MICRO_POWER_SENSOR_NAME="sensor.hypon_micro_power"                                # micro - meaning unclear, but added for completeness
+declare INVERTER_WARNING_SENSOR_NAME="sensor.hypon_inverter_warning"                      # warning, but values unknown, normally 0
 
 
 # Template Values for Daily/Monthly/Yearly Totals Energy Sensors
