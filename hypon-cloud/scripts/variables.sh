@@ -1,6 +1,6 @@
 # Power is measured in Watts (W) at a point in time, Energy is measured in kilo-Watt-hours (kWh) and is power delivered over a time period
 
-# Names for Daily/Monthly/Yearly Totals Sensors                                       source data item from hypon.cloud
+# Names for Daily/Monthly/Yearly Totals Energy Sensors                                      source data item from hypon.cloud
 declare INVERTER_AC_OUT_TODAY_SENSOR_NAME="sensor.hypon_inverter_ac_out_today"            # kwhac - Energy from inverter AC output today
 
 declare TOTAL_ENERGY_USED_TODAY_SENSOR_NAME="sensor.hypon_total_energy_used_today"        # load - Total energy consumed by home today (total of 3 items below)
@@ -13,28 +13,25 @@ declare PV_TO_BATTERY_TODAY_SENSOR_NAME="sensor.hypon_pv_to_battery_today"      
 declare PV_TO_GRID_TODAY_SENSOR_NAME="sensor.hypon_pv_to_grid_today"                      # pv_to_grid - Energy provided to grid (exported)
 declare PV_TO_LOAD_TODAY_SENSOR_NAME="sensor.hypon_pv_to_load_today"                      # pv_to_load - Energy consumed directly by home
 
-declare TOTAL_ENERGY_USED_LESS_INVERTER_OUTPUT_SENSOR_NAME="sensor.hypon_energy_used_less_inverter_output"  # balance - is load - kwhac
+declare TOTAL_ENERGY_USED_LESS_INVERTER_OUTPUT_SENSOR_NAME="sensor.hypon_energy_used_less_inverter_output"  # balance - is 'load' minus 'kwhac'
 
 declare PV_GENERATION_TOTAL_SENSOR_NAME="sensor.hypon_pv_generation_total"                # e_total - assume these keep running totals of pv generation
 declare PV_GENERATION_MONTH_SENSOR_NAME="sensor.hypon_pv_generation_month"                # e_month
 declare PV_GENERATION_TODAY_SENSOR_NAME="sensor.hypon_pv_generation_today"                # e_today
 declare PV_GENERATION_YEAR_SENSOR_NAME="sensor.hypon_pv_generation_year"                  # e_year
 
+# Names for Power & Other Sensors
 declare SELF_CONSUMPTION_PERCENT_SENSOR_NAME="sensor.hypon_self_consumption_percent"      # percent - Assuming 'percent' means portion of load provided by solar panels
-
-# Names for Real Time Sensors
 declare GRID_POWER_NOW_SENSOR_NAME="sensor.hypon_grid_power_now"                          # meter_power - Renamed from grid_import_now (handles export as negative)
 declare LOAD_POWER_NOW_SENSOR_NAME="sensor.hypon_load_power_now"                          # power_load - Renamed from solar_used_now (more accurate)
 declare BATTERY_CHARGE_POWER_NOW_SENSOR_NAME="sensor.hypon_battery_charge_power_now"      # w_cha - Assuming positive for battery charge and negative for battery discharge
 declare PV_POWER_NOW_SENSOR_NAME="sensor.hypon_pv_power_now"                              # power_pv - Renamed from solar_energy_now for clarity
 declare BATTERY_SOC_SENSOR_NAME="sensor.hypon_battery_soc"                                # soc
-
-# Other misc.
 declare MICRO_POWER_SENSOR_NAME="sensor.hypon_micro_power"                                # micro - meaning unclear, but add for completeness
 declare INVERTER_WARNING_SENSOR_NAME="sensor.hypon_inverter_warning"                      # warning
 
 
-# Template Values for Daily/Monthly/Yearly Totals Sensors
+# Template Values for Daily/Monthly/Yearly Totals Energy Sensors
 declare INVERTER_AC_OUT_TODAY_TEMPLATE='{"state": "unknown", "attributes": {"unique_id": "hypon_cloud_inverter_ac_out_today","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Inverter AC Output Today"}}'
 
 declare TOTAL_ENERGY_USED_TODAY_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_total_energy_used_today","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "Total Energy Used Today"}}'
@@ -54,16 +51,13 @@ declare PV_GENERATION_MONTH_TEMPLATE='{"state": "unknown","attributes": {"unique
 declare PV_GENERATION_TODAY_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_pv_generation_today","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation Today"}}'
 declare PV_GENERATION_YEAR_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_pv_generation_year","state_class": "total_increasing","unit_of_measurement": "kWh","device_class": "energy","friendly_name": "PV Generation This Year"}}'
 
+# Template Values for Power & Other Sensors
 declare SELF_CONSUMPTION_PERCENT_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_self_consumption_percent","state_class": "measurement","unit_of_measurement": "%","friendly_name": "Self Consumption Percent"}}'
-
-# Template Values for Real Time Sensors
 declare GRID_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_grid_power_now","state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Grid Power Now"}}'
 declare LOAD_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_load_power_now","state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Load Power Now"}}'
 declare BATTERY_CHARGE_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_battery_charge_power_now","state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Battery Charge Power Now"}}'
 declare PV_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_pv_power_now","state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "PV Power Now"}}'
 declare BATTERY_SOC_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_battery_soc", "state_class": "measurement","unit_of_measurement": "%","device_class": "battery","friendly_name": "Battery State of Charge"}}'
-
-# Other Misc.
 declare MICRO_POWER_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_micro_power","state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Micro Power"}}'
 declare INVERTER_WARNING_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_inverter_warning","friendly_name": "Inverter Warning Code"}}'  # No unit/class as it's a code
 

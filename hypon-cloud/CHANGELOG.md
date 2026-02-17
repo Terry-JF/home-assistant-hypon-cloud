@@ -1,7 +1,7 @@
 # Changelog
 
-## 1.1.2.3
-- Using above version number to track debug versions
+## 1.1.2.5
+- Using above version number to track debug versions uploaded to github
 - 
 ## 1.1.1
 - Updating login process to include oem field based on hyponcloud changes
