@@ -26,7 +26,7 @@ declare GRID_POWER_NOW_SENSOR_NAME="sensor.hypon_grid_power_now"                
 declare LOAD_POWER_NOW_SENSOR_NAME="sensor.hypon_load_power_now"                          # power_load - Renamed from solar_used_now (more accurate)
 declare BATTERY_CHARGE_POWER_NOW_SENSOR_NAME="sensor.hypon_battery_charge_power_now"      # w_cha - Assuming positive for battery charge and negative for battery discharge
 declare PV_POWER_NOW_SENSOR_NAME="sensor.hypon_pv_power_now"                              # power_pv - Renamed from solar_energy_now for clarity
-declare BATTERY_SOC_SENSOR_NAME="sensor.battery_state_of_charge_hypon"                         # state of charge as %
+declare BATTERY_SOC_SENSOR_NAME="sensor.hypon_battery_state_of_charge"                    # state of charge as %
 declare MICRO_POWER_SENSOR_NAME="sensor.hypon_micro_power"                                # micro - meaning unclear, but added for completeness
 declare INVERTER_WARNING_SENSOR_NAME="sensor.hypon_inverter_warning"                      # warning, but values unknown, normally 0
 
@@ -57,7 +57,7 @@ declare GRID_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"unique_id":
 declare LOAD_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_load_power_now","state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Load Power Now"}}'
 declare BATTERY_CHARGE_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_battery_charge_power_now","state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Battery Charge Power Now"}}'
 declare PV_POWER_NOW_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_pv_power_now","state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "PV Power Now"}}'
-declare BATTERY_SOC_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_battery_soc_manual", "state_class": "measurement","unit_of_measurement": "%","device_class": "battery","friendly_name": "Battery State of Charge (Hypon)"}}'
+declare BATTERY_SOC_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_battery_soc_manual", "state_class": "measurement","unit_of_measurement": "%","device_class": "battery","friendly_name": "Battery State of Charge"}}'
 declare MICRO_POWER_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_micro_power","state_class": "measurement","unit_of_measurement": "W","device_class": "power","friendly_name": "Micro Power"}}'
 declare INVERTER_WARNING_TEMPLATE='{"state": "unknown","attributes": {"unique_id": "hypon_cloud_inverter_warning","friendly_name": "Inverter Warning Code"}}'  # No unit/class as it's a code
 
