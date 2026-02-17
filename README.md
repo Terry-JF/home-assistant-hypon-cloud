@@ -6,12 +6,12 @@ This repository contains a Hypon cloud integration for Home Assistant.  This is 
 
 ### Method 1: App Repository
 
-1.	In Home Assistant go to: Settings → Apps → Install app (button at bottom right), this takes you to the App store screen, then cliack   ⋮   (top right) → Repositories
-2.	Paste this URL:
+1.	In Home Assistant go to: **Settings** → **Apps** → **Install app**  (button at bottom right), this takes you to the App store screen, then click  **⋮** (top right) and select **Repositories**
+2.	Paste this URL into the field:
 ```https://github.com/Terry-JF/home-assistant-hypon-cloud```
-and click "+add" then once the entry appears in the list (assuming you already have other entries), click "close", you're now back in the App store screen
-3. Within the App store, find **Hypon Cloud Addon for Home Assistant** (scroll down), and click on Hypon Cloud to open the app setup form
-4. Within the form click **Install**, when finished select Configuration (top center) and enter your details (see below), then press Start. You can monitor issues in the Log
+and click "+add" then once the entry appears in the list (assuming you already have other entries, else it will be alone), click "close", you're now back in the App store screen.
+3. Within the App store, find **Hypon Cloud Addon for Home Assistant** (scroll down, as its normally close to the bottom), and click on Hypon Cloud to open the app setup form.
+4. Within the form click **Install**, when finished select the **Configuration** tab and enter your details (see below), then go back to the **Info** tab and press **Start**. You can monitor issues in the **Log** tab. Double check your System ID if connection fails, this is not your User ID.
 
 ### Method 2: Manual Installation
 
