@@ -19,6 +19,21 @@ loadSensorData() {
     solarData=$(retrieveSolarData "$authToken")
     realTimeData=$(retrieveRealTimeSolarData "$authToken")
 
+    # === NEW ERROR HANDLING FOR BOTH RESPONSES ===
+    if echo "$solarData" | grep -q "502 Bad Gateway" || echo "$realTimeData" | grep -q "502 Bad Gateway"; then
+      bashio::log.error "Hypon.cloud returned 502 Bad Gateway - skipping this update cycle"
+      sleep "$(bashio::config 'refresh_time')"
+      continue
+    fi
+
+    # Safety check: ensure both responses are valid JSON with a .code field
+    if ! echo "$solarData" | jq -e '.code' > /dev/null 2>&1 || ! echo "$realTimeData" | jq -e '.code' > /dev/null 2>&1; then
+      bashio::log.error "Invalid or non-JSON response from Hypon.cloud - skipping this update cycle"
+      sleep "$(bashio::config 'refresh_time')"
+      continue
+    fi
+
+    # Normal processing continues if no errors
     solarDataResponseCode=$(echo $solarData | jq -r '.code')
 
     bashio::log.info "Response Code From loading solar data: $solarDataResponseCode"
